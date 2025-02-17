@@ -21,7 +21,7 @@ interface Transaction {
       id: Date.now() // Assign a unique ID based on timestamp
     };
 
-    // console.log("handleAddTransaction  with ID:", newTransaction);
+    console.log("handleAddTransaction  with ID:", newTransaction.id);
     if (editingTransaction) {
       // Update existing transaction
       setTransactions((prevTransactions) =>
