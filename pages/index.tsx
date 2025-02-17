@@ -10,14 +10,14 @@ interface Transaction {
   category: string;
 }
 
-const categories = [
-  'Food',
-  'Transport',
-  'Entertainment',
-  'Bills',
-  'Health',
-  'Other',
-];
+// const categories = [
+//   'Food',
+//   'Transport',
+//   'Entertainment',
+//   'Bills',
+//   'Health',
+//   'Other',
+// ];
 
 const Home = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
