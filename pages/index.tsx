@@ -25,19 +25,29 @@ const Home = () => {
 
   const handleAddTransaction = (transaction: Transaction) => {
     const newTransaction = { 
-      ...transaction, 
-      id: Date.now()
+      ...transaction,
+      id: editingTransaction ? editingTransaction.id : Date.now() // Keep the original ID when editing 
+      // id: Date.now()
     };
 
-    console.log("handleAddTransaction  with ID:", newTransaction.id);
+    // console.log("handleAddTransaction  with ID:", newTransaction.id);
     if (editingTransaction) {
       setTransactions((prevTransactions) =>
-        prevTransactions.map((t) => (t.id === editingTransaction.id ? transaction : t))
+        prevTransactions.map((t) => (t.id === editingTransaction.id ? newTransaction : t))
       );
       setEditingTransaction(null);
     } else {
-      setTransactions((prevTransactions) => [...prevTransactions, { ...transaction, id: Date.now() }]);
+      setTransactions((prevTransactions) => [...prevTransactions, { ...newTransaction, id: Date.now() }]);
     }
+  };
+
+  const categoryColors: { [key: string]: string } = {
+    Food: '#ff6384',
+    Transport: '#36a2eb',
+    Entertainment: '#ffce56',
+    Bills: '#4bc0c0',
+    Health: '#9966ff',
+    Other: '#ff9f40',
   };
 
   const handleDeleteTransaction = (id: number) => {
@@ -116,12 +126,23 @@ const Home = () => {
         <div className="bg-gray-200 p-4 rounded">
           <h3 className="text-xl font-semibold">Recent Transactions</h3>
           <ul>
-            {recentTransactions.map((transaction) => (
+
+          {recentTransactions
+      .slice(-5) // Get the last 5 added transactions
+      .reverse() // Reverse to show the latest added first
+      .map((transaction) => (
+        <li key={transaction.id} className="flex justify-between py-1">
+          <span className="mr-2">{transaction.description}</span> {/* Adds spacing */}
+          <span className="font-medium">Rs {transaction.amount}</span>
+        </li>
+      ))}
+
+            {/* {recentTransactions.map((transaction) => (
               <li key={transaction.id} className="flex justify-between">
                 <span>{transaction.description}</span>
                 <span>Rs{transaction.amount}</span>
               </li>
-            ))}
+            ))} */}
           </ul>
         </div>
       </div>
@@ -147,10 +168,21 @@ const Home = () => {
         <ResponsiveContainer width="100%" height={300}>
           <PieChart>
             <Pie data={categoryExpenses} dataKey="expenses" nameKey="category" cx="50%" cy="50%" outerRadius={100} fill="#8884d8" label>
+              {categoryExpenses.map((entry) => (
+                <Cell key={entry.category} fill={categoryColors[entry.category] || '#8884d8'} />
+              ))}
+            </Pie>
+            <Tooltip /> 
+          </PieChart>
+        </ResponsiveContainer>
+
+        {/* <ResponsiveContainer width="100%" height={300}>
+          <PieChart>
+            <Pie data={categoryExpenses} dataKey="expenses" nameKey="category" cx="50%" cy="50%" outerRadius={100} fill="#8884d8" label>
               {categoryExpenses.map((entry, index) => <Cell key={`cell-${index}`} fill={index % 2 === 0 ? '#8884d8' : '#82ca9d'} />)}
             </Pie>
           </PieChart>
-        </ResponsiveContainer>
+        </ResponsiveContainer> */}
       </div>
 
       {/* Transaction List */}
