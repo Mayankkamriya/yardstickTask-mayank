@@ -26,7 +26,7 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ onSubmit, editingTran
     if (!amount || !date || !description) return;
 
     onSubmit({
-      id: editingTransaction?.id, // If editing, keep the same ID
+      id: editingTransaction?.id ?? Date.now(), // If editing, keep the same ID
       amount: Number(amount),
       date,
       description,
