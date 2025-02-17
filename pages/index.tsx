@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import TransactionForm from '../components/TransactionForm';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { useRef } from 'react';
 
 interface Transaction {
   id?: number;
@@ -12,6 +13,14 @@ interface Transaction {
 const Home = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [editingTransaction, setEditingTransaction] = useState<Transaction | null>(null);
+
+  const topRef = useRef(null);
+ // Function to scroll to the top
+ const scrollToTop = () => {
+  if (topRef.current) {
+    topRef.current.scrollIntoView({ behavior: 'smooth' }); // Smooth scroll to the top
+  }
+};
 
   // Handle adding a new transaction or updating an existing one
   const handleAddTransaction = (transaction: Transaction) => {
@@ -97,10 +106,10 @@ const Home = () => {
                 <strong>Description:</strong> {transaction.description}
               </div>
               <div className="flex space-x-2">
-                <button onClick={() => handleEditTransaction(transaction)} className="px-3 py-1 bg-blue-500 text-black rounded">
+                <button onClick={() =>{ handleEditTransaction(transaction); scrollToTop();}}  className="bg-blue-500 text-black border border-blue-700 px-3 py-1 rounded hover:bg-blue-600">
                   Edit
                 </button>
-                <button onClick={() => handleDeleteTransaction(transaction.id)} className="px-3 py-1 bg-red-500 text-red rounded">
+                <button onClick={() => handleDeleteTransaction(transaction.id)} className="bg-red-500 text-black border-2 border-red-900 px-3 py-1 rounded hover:bg-red-600">
                   Delete
                 </button>
               </div>
