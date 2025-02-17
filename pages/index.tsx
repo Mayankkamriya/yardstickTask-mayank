@@ -7,7 +7,7 @@ interface Transaction {
   amount: number;
   date: string;
   description: string;
-  category: string; // Added category field
+  category: string;
 }
 
 const categories = [
@@ -30,7 +30,7 @@ const Home = () => {
       // id: Date.now()
     };
 
-    // console.log("handleAddTransaction  with ID:", newTransaction.id);
+    // console.log("handleAddTransaction  with ID:", transaction.id);
     if (editingTransaction) {
       setTransactions((prevTransactions) =>
         prevTransactions.map((t) => (t.id === editingTransaction.id ? newTransaction : t))
@@ -50,7 +50,8 @@ const Home = () => {
     Other: '#ff9f40',
   };
 
-  const handleDeleteTransaction = (id: number) => {
+  const handleDeleteTransaction = (transaction: Transaction) => {
+    const id = transaction.id
     setTransactions((prevTransactions) => prevTransactions.filter((t) => t.id !== id));
   };
 
@@ -104,7 +105,9 @@ const Home = () => {
       <h1 className="text-2xl font-bold">Personal Finance Tracker</h1>
 
       {/* Transaction Form */}
-      <TransactionForm onSubmit={handleAddTransaction} editingTransaction={editingTransaction} categories={categories} />
+      <TransactionForm onSubmit={handleAddTransaction} editingTransaction={editingTransaction  || undefined}
+      //  categories={categories} 
+       />
 
       {/* Dashboard Summary Cards */}
       <div className="grid grid-cols-3 gap-4 mt-8">
@@ -116,8 +119,8 @@ const Home = () => {
           <h3 className="text-xl font-semibold">Category Breakdown</h3>
           <ul>
             {categoryExpenses.map(({ category, expenses }) => (
-              <li key={category} className="flex justify-between">
-                <span>{category}</span>
+              <li key={category} className="flex justify-between py-1">
+                <span className="mr-2">{category}</span>
                 <span>Rs{expenses.toFixed(2)}</span>
               </li>
             ))}
@@ -129,11 +132,11 @@ const Home = () => {
 
           {recentTransactions
       .slice(-5) // Get the last 5 added transactions
-      .reverse() // Reverse to show the latest added first
+      // .reverse() // Reverse to show the latest added first
       .map((transaction) => (
         <li key={transaction.id} className="flex justify-between py-1">
           <span className="mr-2">{transaction.description}</span> {/* Adds spacing */}
-          <span className="font-medium">Rs {transaction.amount}</span>
+          <span className="font-medium">Rs{transaction.amount}</span>
         </li>
       ))}
 
@@ -189,7 +192,7 @@ const Home = () => {
       <div className="mt-8">
         <h2 className="text-xl font-semibold">Transaction List</h2>
         <ul className="space-y-4">
-          {transactions.map((transaction) => (
+          {transactions.reverse().map((transaction) => (
             <li key={transaction.id} className="p-4 border rounded flex justify-between items-center">
               <div>
                 <strong>Amount:</strong> Rs{transaction.amount} <br />
@@ -205,7 +208,7 @@ const Home = () => {
                  }} className="bg-blue-500 text-black border border-blue-700 px-3 py-1 rounded hover:bg-blue-600">
                   Edit
                 </button>
-                <button onClick={() => handleDeleteTransaction(transaction.id)} className="bg-red-500 text-black border-2 border-red-900 px-3 py-1 rounded hover:bg-red-600">
+                <button onClick={() => handleDeleteTransaction(transaction)} className="bg-red-500 text-black border-2 border-red-900 px-3 py-1 rounded hover:bg-red-600">
                   Delete
                 </button>
               </div>

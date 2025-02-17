@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
 interface TransactionFormProps {
-  onSubmit: (transaction: { id?: number; amount: number; date: string; description: string }) => void;
-  editingTransaction?: { id: number; amount: number; date: string; description: string } | null;
+  onSubmit: (transaction: { id?: number; amount: number; date: string; description: string; category: string; }) => void;
+  editingTransaction?: { id?: number; amount: number; date: string; description: string; category: string; } | null;
 }
 
 const categories = ['Food', 'Transport', 'Entertainment', 'Shopping', 'Bills', 'Other'];
