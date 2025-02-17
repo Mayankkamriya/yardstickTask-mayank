@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import TransactionForm from '../components/TransactionForm';
+import Budgeting from "../components/Budgeting";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 
 interface Transaction {
@@ -108,6 +109,11 @@ const Home = () => {
       <TransactionForm onSubmit={handleAddTransaction} editingTransaction={editingTransaction  || undefined}
       //  categories={categories} 
        />
+
+        {/* Budgeting Component */}
+    <div className="mt-8">
+      <Budgeting transactions={transactions} />
+    </div>
 
       {/* Dashboard Summary Cards */}
       <div className="grid grid-cols-3 gap-4 mt-8">
