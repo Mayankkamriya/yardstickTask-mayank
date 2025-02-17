@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/* Custom styles (if needed) */
+.input {
+  @apply px-4 py-2 border rounded-lg w-full;
+}
+
+.btn {
+  @apply px-4 py-2 bg-blue-500 text-white rounded-lg;
+}
+
+.btn-primary {
+  @apply bg-blue-600 hover:bg-blue-700;
+}
+
+
+/* 
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -18,4 +34,4 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
-}
+} */
