@@ -15,7 +15,7 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ onSubmit, editingTran
   
   // Fill the form when editing a transaction
   useEffect(() => {
-    console.log("Editing Transaction Data:", editingTransaction); 
+    // console.log("Editing Transaction Data:", editingTransaction); 
     if (editingTransaction) {
       setAmount(editingTransaction.amount);
       setDate(editingTransaction.date);

@@ -22,7 +22,7 @@ const Home = () => {
       try {
         const response = await fetch('/api/transactions');
         const data = await response.json();
-        console.log('data...',data)
+        // console.log('data...',data)
         setTransactions(data);
       } catch (error) {
         console.error('Error fetching transactions:', error);

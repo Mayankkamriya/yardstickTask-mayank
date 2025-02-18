@@ -1,21 +1,12 @@
-import connectDB from '../../lib/db';  
-import Transaction from '../../models/Transaction'; 
+import connectDB from '../../../lib/db';  
+import Transaction from '../../../models/Transaction'; 
 
 export default async function handler(req, res) {
   await connectDB();
 
-  // below code for getting tranCTION -- Mayank
-  if (req.method === 'GET') {
-    try {
-      const transactions = await Transaction.find(); 
-      res.status(200).json(transactions);
-    } catch (error) {
-      res.status(500).json({ message: 'Error fetching transactions', error });
-    }
-  } 
-  else if (req.method === 'PUT') {
+  // this even we do not come
+   if (req.method === 'PUT') {
     // PUT: Update an existing transaction by ID
-    // this also not come 
     const { id } = req.query;
     const { amount, date, description, category } = req.body;
     try {
@@ -24,7 +15,6 @@ export default async function handler(req, res) {
         { amount, date, description, category },
         { new: true }
       );
-      // console.log('updated transaction...',updatedTransaction)
       if (!updatedTransaction) {
         return res.status(404).json({ message: 'Transaction not found' });
       }
@@ -33,6 +23,8 @@ export default async function handler(req, res) {
     } catch (error) {
       res.status(500).json({ message: 'Error updating transaction', error });
     }
+
+     // below code for DElete tranCTION -- Mayank
   } else if (req.method === 'DELETE') {
     // DELETE: Delete a transaction by ID
     const { id } = req.query;
@@ -48,18 +40,7 @@ export default async function handler(req, res) {
       res.status(500).json({ message: 'Error deleting transaction', error });
     }
   } 
-
-  // below code for add tranCTION -- Mayank
-  else if (req.method === 'POST') {
-    try {
-      const newTransaction = new Transaction(req.body); 
-      await newTransaction.save();
-      res.status(201).json(newTransaction);
-    } catch (error) {
-      console.error('Error adding transaction:', error.message || error); 
-      res.status(500).json({ message: 'Error creating transaction',error: error.message || error });
-    }
-  } else {
+ else {
     res.status(405).json({ message: 'Method Not Allowed' });
   }
 }
