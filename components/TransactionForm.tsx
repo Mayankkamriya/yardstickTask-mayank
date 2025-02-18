@@ -49,7 +49,7 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ onSubmit, editingTran
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-4 border rounded shadow-md">
+    <form onSubmit={handleSubmit} className="p-4 border rounded shadow-md w-4/5 ">
       <h2 className="text-xl font-semibold">{editingTransaction ? 'Edit Transaction' : 'Add Transaction'}</h2>
       
       <div className="mb-4">

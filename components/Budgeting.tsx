@@ -13,12 +13,12 @@ interface BudgetingProps {
 const Budgeting: React.FC<BudgetingProps> = ({ transactions }) => {
   // Step 1: Define Budget State
   const [budgets, setBudgets] = useState<{ [key: string]: number }>({
-    Food: 2500,
+    Food: 500,
     Transport: 1100,
     Entertainment: 500,
-    Shopping: 2500,
-    bills: 1500,
-    others:2700,
+    Shopping: 1500,
+    Bills: 1500,
+    Others:1200,
   });
 
   // Step 2: Function to Update Budget

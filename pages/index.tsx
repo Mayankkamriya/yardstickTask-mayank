@@ -81,7 +81,7 @@ const Home = () => {
     Entertainment: '#ffce56',
     Bills: '#4bc0c0',
     Health: '#9966ff',
-    Other: '#ff9f40',
+    Others: '#ff9f40',
   };
 
   const handleDeleteTransaction = async (transaction: Transaction) => {
@@ -152,10 +152,12 @@ const Home = () => {
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold">Personal Finance Tracker</h1>
 
+<div  className="flex justify-center mt-4">
 {/* Transaction Form */}
 <TransactionForm onSubmit={handleAddTransaction} editingTransaction={editingTransaction  || undefined}
 //  categories={categories} 
  />
+ </div>
 
          {/* Budgeting Component */}
      <div className="mt-8">
