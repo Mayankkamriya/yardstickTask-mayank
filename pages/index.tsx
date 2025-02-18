@@ -150,7 +150,8 @@ const Home = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold">Personal Finance Tracker</h1>
+      {/* <h1 className="text-2xl font-bold">Personal Finance Tracker</h1> */}
+      <h1 className="text-3xl font-bold text-gray-800 text-center mb-4">📌 Personal Finance Tracker</h1>
 
 <div  className="flex justify-center mt-4">
 {/* Transaction Form */}
@@ -164,8 +165,93 @@ const Home = () => {
        <Budgeting transactions={transactions} />
      </div>
 
+
+<div className='max-w-7xl mx-auto p-4 mt-8 mb-8 bg-white rounded-xl shadow-lg space-y-8'>
+     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 gap-y-8 mt-8">
+  {/* Recent Transactions Card */}
+  <div className="bg-gray-100 p-6 rounded-lg shadow-md mt-8">
+    <h3 className="text-xl font-semibold text-gray-800">Recent Transactions</h3>
+    <ul className="space-y-2">
+      {recentTransactions.slice(-5).map((transaction) => (
+        <li
+          key={transaction._id}
+          className="flex justify-between text-gray-700 bg-white p-2 rounded-lg shadow-sm"
+        >
+          <span className="text-sm">{transaction.description}</span>
+          <span className="font-semibold">Rs {transaction.amount}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  {/* Category Breakdown Card */}
+  <div className="bg-gray-100 p-6 rounded-lg shadow-md mt-8">
+    <h3 className="text-xl font-semibold text-gray-800">Category Breakdown</h3>
+    <ul className="space-y-2">
+      {categoryExpenses.map(({ category, expenses }) => (
+        <li key={category} className="flex justify-between text-gray-700 bg-white p-2 rounded-lg shadow-sm">
+          <span className="text-sm font-medium">{category}</span>
+          <span className="font-semibold">Rs {expenses.toFixed(2)}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+
+  {/* Total Expenses Card */}
+  {/* <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-6 rounded-lg shadow-lg flex flex-col justify-between space-y-4"> */}
+  <div className="bg-gray-100 p-6 rounded-lg shadow-md">
+    <h3 className="text-xl font-semibold">Total Expenses</h3>
+    <p className="text-3xl font-bold">Rs {totalExpenses.toFixed(2)}</p>
+  </div>
+
+</div>
+</div>
+
+
+
+     {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8"> */}
+  {/* Total Expenses Card */}
+  {/* <div className="bg-white p-6 rounded-lg shadow-md flex flex-col justify-between space-y-4">
+    <h3 className="text-xl font-semibold text-gray-700">Total Expenses</h3>
+    <p className="text-2xl font-bold text-gray-800">
+      Rs {totalExpenses.toFixed(2)}
+    </p>
+  </div> */}
+
+  {/* Category Breakdown Card */}
+  {/* <div className="bg-white p-6 rounded-lg shadow-md">
+    <h3 className="text-xl font-semibold text-gray-700">Category Breakdown</h3>
+    <ul className="space-y-2">
+      {categoryExpenses.map(({ category, expenses }) => (
+        <li key={category} className="flex justify-between text-gray-700">
+          <span className="text-sm">{category}</span>
+          <span className="font-medium">Rs {expenses.toFixed(2)}</span>
+        </li>
+      ))}
+    </ul>
+  </div> */}
+
+  {/* Recent Transactions Card */}
+  {/* <div className="bg-white p-6 rounded-lg shadow-md">
+    <h3 className="text-xl font-semibold text-gray-700">Recent Transactions</h3>
+    <ul className="space-y-2">
+      {recentTransactions
+        .slice(-5) // Get the last 5 added transactions
+        .map((transaction) => (
+          <li key={transaction._id} className="flex justify-between text-gray-700">
+            <span className="text-sm">{transaction.description}</span>
+            <span className="font-medium">Rs {transaction.amount}</span>
+          </li>
+        ))}
+    </ul>
+  </div>
+</div> */}
+
+
+
        {/* Dashboard Summary Cards */}
-       <div className="grid grid-cols-3 gap-4 mt-8">
+       {/* <div className="grid grid-cols-3 gap-4 mt-8">
          <div className="bg-gray-200 p-4 rounded">
            <h3 className="text-xl font-semibold">Total Expenses</h3>
            <p className="text-2xl">Rs{totalExpenses.toFixed(2)}</p>
@@ -191,9 +277,9 @@ const Home = () => {
       .map((transaction) => (
         <li key={transaction._id} className="flex justify-between py-1">
           <span className="mr-2">{transaction.description}</span> {/* Adds spacing */}
-          <span className="font-medium">Rs{transaction.amount}</span>
+          {/* <span className="font-medium">Rs{transaction.amount}</span>
         </li>
-      ))}
+      ))} */}
 
             {/* {recentTransactions.map((transaction) => (
               <li key={transaction.id} className="flex justify-between">
@@ -201,76 +287,102 @@ const Home = () => {
                 <span>Rs{transaction.amount}</span>
               </li>
             ))} */}
-          </ul>
+          {/* </ul>
         </div>
-      </div>
+      </div> */} 
 
+<div className="max-w-7xl mx-auto p-8 mb-4 bg-white rounded-xl shadow-lg space-y-8">
+      <div className="flex flex-col md:flex-row justify-center items-center gap-6 p-6">
       {/* Monthly Expenses Bar Chart */}
-      <div className="mt-8">
-        <h2 className="text-xl font-semibold">Monthly Expenses</h2>
-        <ResponsiveContainer width="100%" height={300}>
+      <div className="bg-white shadow-lg rounded-xl p-6 w-full md:w-2/3">
+        <h2 className="text-2xl font-semibold text-gray-700 mb-4">📊 Monthly Expenses</h2>
+        <ResponsiveContainer width={700} height={300}>
           <BarChart data={monthlyExpenses}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="month" />
+            <XAxis dataKey="month" className="text-gray-600" />
             <YAxis />
             <Tooltip />
             <Legend />
-            <Bar dataKey="expenses" fill="#8884d8" />
+            <Bar dataKey="expenses" fill="#6366F1" />
           </BarChart>
         </ResponsiveContainer>
       </div>
 
       {/* Category Expenses Pie Chart */}
-      <div className="mt-8">
-        <h2 className="text-xl font-semibold">Category Expenses</h2>
-        <ResponsiveContainer width="100%" height={300}>
+      <div className="bg-white shadow-lg rounded-xl p-6 w-full md:w-1/3">
+        <span className="text-2xl font-semibold text-gray-700 mb-4">🍕 Category Expenses</span>
+        <ResponsiveContainer width={300} height={300}>
           <PieChart>
-            <Pie data={categoryExpenses} dataKey="expenses" nameKey="category" cx="50%" cy="50%" outerRadius={100} fill="#8884d8" label>
+            <Pie
+              data={categoryExpenses}
+              dataKey="expenses"
+              nameKey="category"
+              cx="50%"
+              cy="50%"
+              outerRadius={100}
+              fill="#6366F1"
+              label
+            >
               {categoryExpenses.map((entry) => (
-                <Cell key={entry.category} fill={categoryColors[entry.category] || '#8884d8'} />
+                <Cell key={entry.category} fill={categoryColors[entry.category] || '#6366F1'} />
               ))}
             </Pie>
-            <Tooltip /> 
+            <Tooltip />
           </PieChart>
         </ResponsiveContainer>
-
-        {/* <ResponsiveContainer width="100%" height={300}>
-          <PieChart>
-            <Pie data={categoryExpenses} dataKey="expenses" nameKey="category" cx="50%" cy="50%" outerRadius={100} fill="#8884d8" label>
-              {categoryExpenses.map((entry, index) => <Cell key={`cell-${index}`} fill={index % 2 === 0 ? '#8884d8' : '#82ca9d'} />)}
-            </Pie>
-          </PieChart>
-        </ResponsiveContainer> */}
       </div>
+    </div>
+    </div>
+
 
       {/* Transaction List */}
-      <div className="mt-8">
-        <h2 className="text-xl font-semibold">Transaction List</h2>
-        <ul className="space-y-4">
-          {transactions.reverse().map((transaction) => (
-            <li key={transaction._id} className="p-4 border rounded flex justify-between items-center">
-              <div>
-                <strong>Amount:</strong> Rs{transaction.amount} <br />
-                <strong>Date:</strong> {transaction.date} <br />
-                <strong>Description:</strong> {transaction.description} <br />
-                <strong>Category:</strong> {transaction.category}
-              </div>
-              <div className="flex space-x-2">
-                <button onClick={() => { handleEditTransaction(transaction); 
-                  setTimeout(() => {
-                            window.scrollTo({top: 0, behavior: 'smooth' }) 
-                          }, 200);
-                 }} className="bg-blue-500 text-black border border-blue-700 px-3 py-1 rounded hover:bg-blue-600">
-                  Edit
-                </button>
-                <button onClick={() => handleDeleteTransaction(transaction)} className="bg-red-500 text-black border-2 border-red-900 px-3 py-1 rounded hover:bg-red-600">
-                  Delete
-                </button>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <div className="max-w-7xl mx-auto p-8 bg-white rounded-xl shadow-lg space-y-8">
+<div className="mt-4 bg-white shadow-lg rounded-xl p-6">
+  <h2 className="text-2xl font-semibold text-gray-700 mb-4">📜 Transaction List</h2>
+  
+  {transactions.length === 0 ? (
+    <p className="text-gray-500 text-center">No transactions available</p>
+  ) : (
+    <ul className="space-y-4">
+      {transactions.slice().reverse().map((transaction) => (
+        <li 
+          key={transaction._id} 
+          className="p-4 border border-gray-300 rounded-lg flex flex-col sm:flex-row justify-between items-start sm:items-center bg-gray-50 hover:bg-gray-100 transition-all duration-200"
+        >
+          {/* Left Section - Transaction Details */}
+          <div className="text-gray-800 w-full sm:w-3/4">
+            <p><strong className="text-gray-600">Amount:</strong> <span className="text-green-600 font-medium">Rs {transaction.amount}</span></p>
+            <p><strong className="text-gray-600">Date:</strong> {new Date(transaction.date).toLocaleDateString()}</p>
+            <p><strong className="text-gray-600">Description:</strong> {transaction.description}</p>
+            <p><strong className="text-gray-600">Category:</strong> <span className="text-blue-500">{transaction.category}</span></p>
+          </div>
+
+          {/* Right Section - Buttons */}
+          <div className="flex space-x-2 mt-3 sm:mt-0">
+            <button 
+              onClick={() => { 
+                handleEditTransaction(transaction);
+                setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 200);
+              }} 
+              className="bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition-all duration-200"
+            >
+              ✏️ Edit
+            </button>
+
+            <button 
+              onClick={() => handleDeleteTransaction(transaction)} 
+              className="bg-red-600 text-white px-4 py-2 rounded-lg shadow hover:bg-red-700 transition-all duration-200"
+            >
+              🗑️ Delete
+            </button>
+          </div>
+        </li>
+      ))}
+    </ul>
+  )}
+</div>
+</div>
+
     </div>
   );
 };
