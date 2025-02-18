@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 interface TransactionFormProps {
-  onSubmit: (transaction: { id?: number; amount: number; date: string; description: string; category: string; }) => void;
-  editingTransaction?: { id?: number; amount: number; date: string; description: string; category: string; } | null;
+  onSubmit: (transaction: { _id?: string; amount: number; date: string; description: string; category: string; }) => void;
+  editingTransaction?: { _id?: string; amount: number; date: string; description: string; category: string; } | null;
 }
 
-const categories = ['Food', 'Transport', 'Entertainment', 'Shopping', 'Bills', 'Other'];
+const categories = ['Food', 'Transport', 'Entertainment', 'Shopping', 'Bills', 'Others'];
 
 const TransactionForm: React.FC<TransactionFormProps> = ({ onSubmit, editingTransaction }) => {
   const [amount, setAmount] = useState<number | string>('');
@@ -30,10 +30,13 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ onSubmit, editingTran
 
     if (!amount || !date || !description) return;
 
+    const formattedDate = new Date(date).toISOString(); // Ensure proper date format
+    console.log("Formatted Date before submit:", formattedDate); // Log the formatted date
+
     onSubmit({
-      id: editingTransaction?.id ?? Date.now(), // If editing, keep the same ID
+      // id: editingTransaction?._id , // If editing, keep the same ID
       amount: Number(amount),
-      date,
+      date :formattedDate,
       description,
       category,
     });
