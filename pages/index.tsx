@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import TransactionForm from '../components/TransactionForm';
 import Budgeting from "../components/Budgeting";
+import { toast } from "react-toastify";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 
 interface Transaction {
@@ -47,6 +48,7 @@ const Home = () => {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(newTransaction),
         });
+        toast.success("Transaction Updated successfully!");
       } else {
         response = await fetch('/api/transactions', {
           method: 'POST',
@@ -54,6 +56,7 @@ const Home = () => {
           body: JSON.stringify(newTransaction),
         }
       );
+      toast.success("Transaction Added successfully!");
       }
 
       const data = await response.json();
@@ -84,6 +87,16 @@ const Home = () => {
   };
 
   const handleDeleteTransaction = async (transaction: Transaction) => {
+
+      const confirmDelete = window.confirm(
+        `🚨 Are you sure you want to delete this transaction?\n\n` +
+        `📝 Details:\n- Amount: ${transaction.amount}\n-Date: ${new Date(transaction.date).toLocaleDateString()}\n- Category: ${transaction.category}\n\n` +
+        `⚠️ This action is irreversible!`
+      );
+    
+      if (!confirmDelete) return; // If user cancels, do nothing
+    
+
     try {
       const response = await fetch(`/api/transactions/${transaction._id}`, {
         method: 'DELETE',
@@ -167,15 +180,15 @@ const Home = () => {
      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 gap-y-8 mt-8">
   {/* Recent Transactions Card */}
   <div className="bg-gray-100 p-6 rounded-lg shadow-md mt-8">
-    <h3 className="text-xl font-semibold text-gray-800">Recent Transactions</h3>
+    <h3 className="text-xl font-semibold text-gray-800 mb-4">Recent Transactions</h3>
     <ul className="space-y-2">
       {recentTransactions.slice(-5).map((transaction) => (
         <li
           key={transaction._id}
           className="flex justify-between text-gray-700 bg-white p-2 rounded-lg shadow-sm"
         >
-          <span className="text-sm">{transaction.description}</span>
-          <span className="font-semibold">Rs {transaction.amount}</span>
+          <span className="text-sm">{transaction.description}</span>&nbsp;
+          <span className="font-semibold">₹{transaction.amount}</span>
         </li>
       ))}
     </ul>
@@ -183,12 +196,12 @@ const Home = () => {
 
   {/* Category Breakdown Card */}
   <div className="bg-gray-100 p-6 rounded-lg shadow-md mt-8">
-    <h3 className="text-xl font-semibold text-gray-800">Category Breakdown</h3>
+    <h3 className="text-xl font-semibold text-gray-800 mb-4">Category Breakdown</h3>
     <ul className="space-y-2">
       {categoryExpenses.map(({ category, expenses }) => (
         <li key={category} className="flex justify-between text-gray-700 bg-white p-2 rounded-lg shadow-sm">
-          <span className="text-sm font-medium">{category}</span>
-          <span className="font-semibold">Rs {expenses.toFixed(2)}</span>
+          <span className="text-sm font-medium">{category} </span>&nbsp;
+          <span className="font-semibold"> ₹{expenses}</span>
         </li>
       ))}
     </ul>
@@ -199,7 +212,7 @@ const Home = () => {
   {/* <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-6 rounded-lg shadow-lg flex flex-col justify-between space-y-4"> */}
   <div className="bg-gray-100 p-6 rounded-lg shadow-md">
     <h3 className="text-xl font-semibold">Total Expenses</h3>
-    <p className="text-3xl font-bold">Rs {totalExpenses.toFixed(2)}</p>
+    <p className="text-3xl font-bold">₹{totalExpenses.toFixed(2)}</p>
   </div>
 
 </div>
@@ -265,7 +278,7 @@ const Home = () => {
         >
           {/* Left Section - Transaction Details */}
           <div className="text-gray-800 w-full sm:w-3/4">
-            <p><strong className="text-gray-600">Amount:</strong> <span className="text-green-600 font-medium">Rs {transaction.amount}</span></p>
+            <p><strong className="text-gray-600">Amount:</strong> <span className="text-green-600 font-medium">₹{transaction.amount}</span></p>
             <p><strong className="text-gray-600">Date:</strong> {new Date(transaction.date).toLocaleDateString()}</p>
             <p><strong className="text-gray-600">Description:</strong> {transaction.description}</p>
             <p><strong className="text-gray-600">Category:</strong> <span className="text-blue-500">{transaction.category}</span></p>

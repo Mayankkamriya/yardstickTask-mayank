@@ -119,7 +119,7 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ onSubmit, editingTran
   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
     {/* Amount Input */}
     <div className="space-y-2">
-      <label className="block text-gray-700 font-medium">Amount (Rs):</label>
+      <label className="block text-gray-700 font-medium">Amount (₹):</label>
       <input
         type="number"
         value={amount}

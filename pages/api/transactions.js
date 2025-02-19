@@ -1,5 +1,6 @@
 import connectDB from '../../lib/db';  
 import Transaction from '../../models/Transaction'; 
+import { toast } from "react-toastify";
 
 export default async function handler(req, res) {
   await connectDB();
@@ -16,6 +17,12 @@ export default async function handler(req, res) {
     try {
       const newTransaction = new Transaction(req.body); 
       await newTransaction.save();
+
+        // Encode
+        // const encodedto = `${process.env.ENCODETO}`
+      //   const encodednewTransaction = Buffer.from(JSON.stringify(newTransaction)).toString(encodedto);
+      //  console.log('encodedtransaction...',encodednewTransaction)
+      toast.success("Transaction Added successfully!");
       res.status(201).json(newTransaction);
     } catch (error) {
       console.error('Error adding transaction:', error.message || error); 

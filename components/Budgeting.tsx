@@ -64,14 +64,14 @@ const Budgeting: React.FC<BudgetingProps> = ({ transactions }) => {
 
   const spendingInsights = useMemo(() => {
     return budgetComparisonData.map(({ category, budget, actual }) => {
-      const percentage = ((actual / budget) * 100).toFixed(1);
+      const percentage = ((Number(actual) / Number(budget)) * 100).toFixed(1);
       let message, bgColor, textColor;
   
       if (actual > budget) {
         message = `🚨 You've exceeded your ${category} budget!`;
         bgColor = "bg-red-100";
         textColor = "text-red-700";
-      } else if (percentage >= 80) {
+      } else if (Number(percentage) >= 80) {
         message = `⚠️ You've used ${percentage}% of your ${category} budget. Be cautious!`;
         bgColor = "bg-yellow-100";
         textColor = "text-yellow-700";
