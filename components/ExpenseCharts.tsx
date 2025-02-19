@@ -15,7 +15,7 @@ const ExpenseCharts: React.FC<ExpenseChartsProps> = ({ monthlyExpenses, category
         {/* Monthly Expenses Bar Chart */}
         <div className="bg-white shadow-lg rounded-xl p-6 w-full md:w-2/3">
           <h2 className="text-3xl font-semibold text-gray-700 mb-4">📊 Monthly Expenses</h2>
-          <ResponsiveContainer width="100%" height={300}>
+          <ResponsiveContainer width="90%" height={300}>
             <BarChart data={monthlyExpenses}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="month" className="text-gray-600" />
@@ -28,7 +28,7 @@ const ExpenseCharts: React.FC<ExpenseChartsProps> = ({ monthlyExpenses, category
         </div>
 
         {/* Category Expenses Pie Chart */}
-        <div className="bg-white shadow-lg rounded-xl p-6 w-full md:w-1/3">
+        <div className="bg-white shadow-lg rounded-xl p-6 w-full md:w-2/5">
           <span className="text-3xl font-semibold text-gray-700 mb-4">🍕 Category Expenses</span>
           <div className="flex justify-center">
             <ResponsiveContainer width={450} height={300}>
