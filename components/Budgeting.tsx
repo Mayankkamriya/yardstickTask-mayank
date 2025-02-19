@@ -47,26 +47,51 @@ const Budgeting: React.FC<BudgetingProps> = ({ transactions }) => {
   }, [budgets, categorySpending]);
 
   // Step 5: Spending Insights for each category
+  // const spendingInsights = useMemo(() => {
+  //   return budgetComparisonData.map(({ category, budget, actual }) => {
+  //     const percentage = ((actual / budget) * 100).toFixed(1);
+  //     return {
+  //       category,
+  //       message:
+  //         actual > budget
+  //           ? `⚠️ You've exceeded your ${category} budget!`
+  //           : `✅ You're at ${percentage}% of your ${category} budget.`,
+  //     };
+  //   });
+  // }, [budgetComparisonData]);
+
+
+
   const spendingInsights = useMemo(() => {
     return budgetComparisonData.map(({ category, budget, actual }) => {
       const percentage = ((actual / budget) * 100).toFixed(1);
-      return {
-        category,
-        message:
-          actual > budget
-            ? `⚠️ You've exceeded your ${category} budget!`
-            : `✅ You're at ${percentage}% of your ${category} budget.`,
-      };
+      let message, bgColor, textColor;
+  
+      if (actual > budget) {
+        message = `🚨 You've exceeded your ${category} budget!`;
+        bgColor = "bg-red-100";
+        textColor = "text-red-700";
+      } else if (percentage >= 80) {
+        message = `⚠️ You've used ${percentage}% of your ${category} budget. Be cautious!`;
+        bgColor = "bg-yellow-100";
+        textColor = "text-yellow-700";
+      } else {
+        message = `✅ You're at ${percentage}% of your ${category} budget.`;
+        bgColor = "bg-green-50";
+        textColor = "text-gray-700";
+      }
+  
+      return { category, message, bgColor, textColor };
     });
   }, [budgetComparisonData]);
 
   return (
-    <div className="max-w-7xl mx-auto p-8 bg-white rounded-xl shadow-lg space-y-8 mb-4">
+    <div className="max-w-7xl mx-auto p-6 bg-white rounded-xl shadow-lg space-y-5 mb-4">
   {/* Set Monthly Budgets */}
   <h2 className="text-3xl font-semibold text-gray-800">Set Monthly Budgets</h2>
-  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
     {Object.keys(budgets).map((category) => (
-      <div key={category} className="flex flex-col space-y-2">
+      <div key={category} className="flex flex-col space-y-1.5">
         <label htmlFor={category} className="text-gray-700 font-medium">
           {category} Budget:
         </label>
@@ -97,14 +122,33 @@ const Budgeting: React.FC<BudgetingProps> = ({ transactions }) => {
   </div>
 
   {/* Spending Insights */}
-  <h2 className="text-3xl font-semibold text-gray-800">Spending Insights</h2>
+  {/* <h2 className="text-3xl font-semibold text-gray-800">Spending Insights</h2>
   <div className="bg-gray-100 p-6 rounded-lg shadow-md">
     <ul className="space-y-3">
       {spendingInsights.map(({ category, message }) => (
         <li key={category} className="text-gray-700 font-medium">{message}</li>
       ))}
     </ul>
-  </div>
+  </div> */}
+<div className="bg-white p-6 rounded-xl shadow-lg">
+<h2 className="text-3xl font-semibold text-gray-800 mb-4">Spending Insights</h2>
+      {spendingInsights.length === 0 ? (
+        <p className="text-gray-500 text-lg">No spending data available.</p>
+      ) : (
+        <ul className="space-y-0.5">
+          {spendingInsights.map(({ category, message, bgColor, textColor }) => (
+            <li
+              key={category}
+              className={`text-[15px] lg:text-[16px] font-medium p-2 rounded-lg ${bgColor} ${textColor}`}
+            >
+              {message}
+            </li>
+          ))}
+        </ul>
+      )}
+</div>
+
+
 </div>
 
  );
