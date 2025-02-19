@@ -174,7 +174,9 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ onSubmit, editingTran
   {/* Submit Button */}
   <button
     type="submit"
-    className="max-w-7xl mt-6 px-6 py-3 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition duration-200"
+    // className="max-w-7xl mt-6 px-6 py-3 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition duration-200"
+    className="w-full sm:w-auto mt-6 px-8 py-3 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 active:bg-green-700 disabled:bg-gray-400 transition-all duration-300 ease-in-out transform hover:scale-105 focus:ring-2 focus:ring-green-400 focus:outline-none"
+
   >
     {editingTransaction ? "Update Transaction" : "Add Transaction"}
   </button>
