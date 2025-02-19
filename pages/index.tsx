@@ -3,8 +3,6 @@ import TransactionForm from '../components/TransactionForm';
 import Budgeting from "../components/Budgeting";
 import ExpenseCharts from "../components/ExpenseCharts";
 import { toast } from "react-toastify";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
-
 interface Transaction {
   _id?: string; 
   amount: number;
