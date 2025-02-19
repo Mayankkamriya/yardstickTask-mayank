@@ -1,4 +1,4 @@
-# 💰 Personal Finance Visualizer(yardstickTask-mayank)
+# 💰 Personal Finance Visualizer (yardstickTask-mayank)
 
 ## 📌 Overview
 The **Personal Finance Visualizer** is a modern web-based application designed to help users efficiently track their expenses. It provides insightful visualizations, transaction management, and downloadable reports to enhance financial awareness.
@@ -10,7 +10,7 @@ The **Personal Finance Visualizer** is a modern web-based application designed t
 ✅ **Category-Based Analysis** - Monitor spending patterns through categorized insights.  
 ✅ **Data Storage** - Securely store transactions using **MongoDB (or Local Storage as a fallback)**.  
 ✅ **Download Reports** - Export financial records as a **PDF report**.  
-✅ **Transaction History** -  View all recorded transactions in one place.
+✅ **Transaction History** -  View all recorded transactions in one place.      
 ✅ **Deployed Version Available** - Access the application online anytime.  
 
 ## 🛠 Tech Stack
