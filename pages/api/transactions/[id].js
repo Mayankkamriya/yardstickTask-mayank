@@ -4,7 +4,6 @@ import Transaction from '../../../models/Transaction';
 export default async function handler(req, res) {
   await connectDB();
 
-  // this even we do not come
    if (req.method === 'PUT') {
     // PUT: Update an existing transaction by ID
     const { id } = req.query;
@@ -24,7 +23,6 @@ export default async function handler(req, res) {
       res.status(500).json({ message: 'Error updating transaction', error });
     }
 
-     // below code for DElete tranCTION -- Mayank
   } else if (req.method === 'DELETE') {
     // DELETE: Delete a transaction by ID
     const { id } = req.query;

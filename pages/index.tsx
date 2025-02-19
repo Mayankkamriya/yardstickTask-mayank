@@ -42,7 +42,6 @@ const Home = () => {
     try {
       let response;
       if (editingTransaction) {
-        console.log('editingTransaction._id....',editingTransaction._id)
         response = await fetch(`/api/transactions/${editingTransaction._id}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
@@ -153,12 +152,10 @@ const Home = () => {
       {/* <h1 className="text-2xl font-bold">Personal Finance Tracker</h1> */}
       <h1 className="text-3xl font-bold text-gray-800 text-center mb-4">📌 Personal Finance Tracker</h1>
 
-<div  className="flex justify-center mt-4">
-{/* Transaction Form */}
-<TransactionForm onSubmit={handleAddTransaction} editingTransaction={editingTransaction  || undefined}
-//  categories={categories} 
- />
- </div>
+        {/* Transaction Form */}
+      <div  className="flex justify-center mt-4">
+        <TransactionForm onSubmit={handleAddTransaction} editingTransaction={editingTransaction  || undefined} />
+      </div>
 
          {/* Budgeting Component */}
      <div className="mt-8">
@@ -208,95 +205,12 @@ const Home = () => {
 </div>
 </div>
 
-
-
-     {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8"> */}
-  {/* Total Expenses Card */}
-  {/* <div className="bg-white p-6 rounded-lg shadow-md flex flex-col justify-between space-y-4">
-    <h3 className="text-xl font-semibold text-gray-700">Total Expenses</h3>
-    <p className="text-2xl font-bold text-gray-800">
-      Rs {totalExpenses.toFixed(2)}
-    </p>
-  </div> */}
-
-  {/* Category Breakdown Card */}
-  {/* <div className="bg-white p-6 rounded-lg shadow-md">
-    <h3 className="text-xl font-semibold text-gray-700">Category Breakdown</h3>
-    <ul className="space-y-2">
-      {categoryExpenses.map(({ category, expenses }) => (
-        <li key={category} className="flex justify-between text-gray-700">
-          <span className="text-sm">{category}</span>
-          <span className="font-medium">Rs {expenses.toFixed(2)}</span>
-        </li>
-      ))}
-    </ul>
-  </div> */}
-
-  {/* Recent Transactions Card */}
-  {/* <div className="bg-white p-6 rounded-lg shadow-md">
-    <h3 className="text-xl font-semibold text-gray-700">Recent Transactions</h3>
-    <ul className="space-y-2">
-      {recentTransactions
-        .slice(-5) // Get the last 5 added transactions
-        .map((transaction) => (
-          <li key={transaction._id} className="flex justify-between text-gray-700">
-            <span className="text-sm">{transaction.description}</span>
-            <span className="font-medium">Rs {transaction.amount}</span>
-          </li>
-        ))}
-    </ul>
-  </div>
-</div> */}
-
-
-
-       {/* Dashboard Summary Cards */}
-       {/* <div className="grid grid-cols-3 gap-4 mt-8">
-         <div className="bg-gray-200 p-4 rounded">
-           <h3 className="text-xl font-semibold">Total Expenses</h3>
-           <p className="text-2xl">Rs{totalExpenses.toFixed(2)}</p>
-         </div>
-         <div className="bg-gray-200 p-4 rounded">
-           <h3 className="text-xl font-semibold">Category Breakdown</h3>
-           <ul>
-             {categoryExpenses.map(({ category, expenses }) => (
-              <li key={category} className="flex justify-between py-1">
-                <span className="mr-2">{category}</span>
-                <span>Rs{expenses.toFixed(2)}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="bg-gray-200 p-4 rounded">
-          <h3 className="text-xl font-semibold">Recent Transactions</h3>
-          <ul>
-
-          {recentTransactions
-      .slice(-5) // Get the last 5 added transactions
-      // .reverse() // Reverse to show the latest added first
-      .map((transaction) => (
-        <li key={transaction._id} className="flex justify-between py-1">
-          <span className="mr-2">{transaction.description}</span> {/* Adds spacing */}
-          {/* <span className="font-medium">Rs{transaction.amount}</span>
-        </li>
-      ))} */}
-
-            {/* {recentTransactions.map((transaction) => (
-              <li key={transaction.id} className="flex justify-between">
-                <span>{transaction.description}</span>
-                <span>Rs{transaction.amount}</span>
-              </li>
-            ))} */}
-          {/* </ul>
-        </div>
-      </div> */} 
-
-<div className="max-w-7xl mx-auto p-8 mb-4 bg-white rounded-xl shadow-lg space-y-8">
-      <div className="flex flex-col md:flex-row justify-center items-center gap-6 p-6">
       {/* Monthly Expenses Bar Chart */}
+    <div className="max-w-7xl mx-auto p-8 mb-4 bg-white rounded-xl shadow-lg space-y-8">
+      <div className="flex flex-col md:flex-row justify-center items-center gap-6 ">
       <div className="bg-white shadow-lg rounded-xl p-6 w-full md:w-2/3">
         <h2 className="text-2xl font-semibold text-gray-700 mb-4">📊 Monthly Expenses</h2>
-        <ResponsiveContainer width={700} height={300}>
+        <ResponsiveContainer width='100%' height={300}>
           <BarChart data={monthlyExpenses}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="month" className="text-gray-600" />
@@ -306,7 +220,7 @@ const Home = () => {
             <Bar dataKey="expenses" fill="#6366F1" />
           </BarChart>
         </ResponsiveContainer>
-      </div>
+    </div>
 
       {/* Category Expenses Pie Chart */}
       <div className="bg-white shadow-lg rounded-xl p-6 w-full md:w-1/3">

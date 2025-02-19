@@ -31,7 +31,6 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ onSubmit, editingTran
     if (!amount || !date || !description) return;
 
     const formattedDate = new Date(date).toISOString(); // Ensure proper date format
-    console.log("Formatted Date before submit:", formattedDate); // Log the formatted date
 
     onSubmit({
       // id: editingTransaction?._id , // If editing, keep the same ID

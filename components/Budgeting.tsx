@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
 interface Transaction {
   category: string;
@@ -64,7 +64,7 @@ const Budgeting: React.FC<BudgetingProps> = ({ transactions }) => {
     <div className="max-w-7xl mx-auto p-8 bg-white rounded-xl shadow-lg space-y-8 mb-4">
   {/* Set Monthly Budgets */}
   <h2 className="text-3xl font-semibold text-gray-800">Set Monthly Budgets</h2>
-  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
     {Object.keys(budgets).map((category) => (
       <div key={category} className="flex flex-col space-y-2">
         <label htmlFor={category} className="text-gray-700 font-medium">
@@ -84,6 +84,7 @@ const Budgeting: React.FC<BudgetingProps> = ({ transactions }) => {
   {/* Budget vs. Actual Spending */}
   <h2 className="text-3xl font-semibold text-gray-800">Budget vs. Actual Spending</h2>
   <div className="bg-gray-100 p-6 rounded-lg shadow-md flex justify-center">
+    <ResponsiveContainer width='100%' height={300}>
     <BarChart width={700} height={350} data={budgetComparisonData}>
       <XAxis dataKey="category" />
       <YAxis />
@@ -92,6 +93,7 @@ const Budgeting: React.FC<BudgetingProps> = ({ transactions }) => {
       <Bar dataKey="budget" fill="#8884d8" />
       <Bar dataKey="actual" fill="#82ca9d" />
     </BarChart>
+    </ResponsiveContainer>
   </div>
 
   {/* Spending Insights */}

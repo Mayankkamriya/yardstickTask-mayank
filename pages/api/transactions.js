@@ -4,7 +4,6 @@ import Transaction from '../../models/Transaction';
 export default async function handler(req, res) {
   await connectDB();
 
-  // below code for getting tranCTION -- Mayank
   if (req.method === 'GET') {
     try {
       const transactions = await Transaction.find(); 
@@ -13,43 +12,6 @@ export default async function handler(req, res) {
       res.status(500).json({ message: 'Error fetching transactions', error });
     }
   } 
-  else if (req.method === 'PUT') {
-    // PUT: Update an existing transaction by ID
-    // this also not come 
-    const { id } = req.query;
-    const { amount, date, description, category } = req.body;
-    try {
-      const updatedTransaction = await Transaction.findByIdAndUpdate(
-        id,
-        { amount, date, description, category },
-        { new: true }
-      );
-      // console.log('updated transaction...',updatedTransaction)
-      if (!updatedTransaction) {
-        return res.status(404).json({ message: 'Transaction not found' });
-      }
-      
-      res.status(200).json(updatedTransaction);
-    } catch (error) {
-      res.status(500).json({ message: 'Error updating transaction', error });
-    }
-  } else if (req.method === 'DELETE') {
-    // DELETE: Delete a transaction by ID
-    const { id } = req.query;
-    try {
-      const deletedTransaction = await Transaction.findByIdAndDelete(id);
-
-      if (!deletedTransaction) {
-        return res.status(404).json({ message: 'Transaction not found' });
-      }
-
-      res.status(200).json({ message: 'Transaction deleted successfully' });
-    } catch (error) {
-      res.status(500).json({ message: 'Error deleting transaction', error });
-    }
-  } 
-
-  // below code for add tranCTION -- Mayank
   else if (req.method === 'POST') {
     try {
       const newTransaction = new Transaction(req.body); 
