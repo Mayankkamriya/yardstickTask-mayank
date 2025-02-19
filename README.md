@@ -8,8 +8,7 @@ The **Personal Finance Visualizer** is a modern web-based application designed t
 ✅ **Recent Transactions** - Instantly view a summary of the latest financial activities.  
 ✅ **Total Expenses Calculation** - Get real-time updates on total expenditures.  
 ✅ **Category-Based Analysis** - Monitor spending patterns through categorized insights.  
-✅ **Data Storage** - Securely store transactions using **MongoDB (or Local Storage as a fallback)**.  
-✅ **Download Reports** - Export financial records as a **PDF report**.  
+✅ **Data Storage** - Securely store transactions using **MongoDB (or Local Storage as a fallback)**.   
 ✅ **Transaction History** -  View all recorded transactions in one place.      
 ✅ **Deployed Version Available** - Access the application online anytime.  
 
