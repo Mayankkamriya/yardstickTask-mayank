@@ -44,6 +44,15 @@ The **Personal Finance Visualizer** is a modern web-based application designed t
 The project is deployed online. You can access it here:  
 🔗 **Live Demo:** [https://mayankyardstick.vercel.app](https://mayankyardstick.vercel.app)  
 
+## ❗ Known Issues
+
+   - **Bug**: When clicking the Edit button, the date field is not getting set properly.
+   - **Cause**: The date state is not being correctly initialized when loading the edit form.
+   - **Status**: Identified
+   - **Workaround**: Manually reselect the date before saving.
+
+Planned Fix: Updating the state management to ensure the date field is set correctly when editing an entry.
+
 ## 🤝 Contribution
 Contributions are welcome! Feel free to fork this repository and submit a pull request with improvements.
 
