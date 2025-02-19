@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import TransactionForm from '../components/TransactionForm';
 import Budgeting from "../components/Budgeting";
+import ExpenseCharts from "../components/ExpenseCharts";
 import { toast } from "react-toastify";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 
@@ -217,52 +218,8 @@ const Home = () => {
 </div>
 </div>
 
-      {/* Monthly Expenses Bar Chart */}
-    <div className="max-w-7xl mx-auto p-6 mb-4 bg-white rounded-xl shadow-lg space-y-8">
-      <div className="flex flex-col md:flex-row justify-center items-center gap-6 ">
-      <div className="bg-white shadow-lg rounded-xl p-6 w-full md:w-2/3">
-        <h2 className="text-3xl font-semibold text-gray-700 mb-4">📊 Monthly Expenses</h2>
-        <ResponsiveContainer width='100%' height={300}>
-          <BarChart data={monthlyExpenses}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="month" className="text-gray-600" />
-            <YAxis />
-            <Tooltip formatter={(value) => `₹${value}`} />
-            <Legend />
-            <Bar dataKey="expenses" fill="#6366F1" />
-          </BarChart>
-        </ResponsiveContainer>
-    </div>
-
-      {/* Category Expenses Pie Chart */}
-      <div className="bg-white shadow-lg rounded-xl p-6 w-full md:w-1/3">
-        <span className="text-3xl font-semibold text-gray-700 mb-4">🍕 Category Expenses</span>
-       <div className=' flex justify-center'>
-        <ResponsiveContainer width={450} height={300}>
-          <PieChart>
-            <Pie
-              data={categoryExpenses}
-              dataKey="expenses"
-              nameKey="category"
-              cx="50%"
-              cy="50%"
-              outerRadius={100}
-              fill="#6366F1"
-              label={({ name, value }) => `${name}: ₹${value}`}
-            >
-              {categoryExpenses.map((entry) => (
-                <Cell key={entry.category} fill={categoryColors[entry.category] || '#6366F1'} />
-              ))}
-            </Pie>
-            <Tooltip formatter={(value) => `₹${value}`} />
-          </PieChart>
-        </ResponsiveContainer>
-        </div>
-      </div>
-    </div>
-    </div>
-
-
+  <ExpenseCharts monthlyExpenses={monthlyExpenses} categoryExpenses={categoryExpenses} categoryColors={categoryColors} />;
+    
       {/* Transaction List */}
       <div className="max-w-7xl mx-auto p-18 bg-white rounded-xl shadow-lg space-y-8">
 <div className="mt-4 bg-white shadow-lg rounded-xl p-6">

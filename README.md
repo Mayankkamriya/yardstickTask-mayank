@@ -1,4 +1,4 @@
-# 💰 Personal Finance Visualizer
+# 💰 Personal Finance Visualizer(yardstickTask-mayank)
 
 ## 📌 Overview
 The **Personal Finance Visualizer** is a modern web-based application designed to help users efficiently track their expenses. It provides insightful visualizations, transaction management, and downloadable reports to enhance financial awareness.
@@ -43,7 +43,7 @@ The **Personal Finance Visualizer** is a modern web-based application designed t
 
 ## 🌍 Deployment
 The project is deployed online. You can access it here:  
-🔗 **Live Demo:** [Your Deployment Link](https://mayankyardstick.vercel.app)  
+🔗 **Live Demo:** [https://mayankyardstick.vercel.app](https://mayankyardstick.vercel.app)  
 
 ## 🤝 Contribution
 Contributions are welcome! Feel free to fork this repository and submit a pull request with improvements.
