@@ -1,40 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# 💰 Personal Finance Visualizer
 
-## Getting Started
+## 📌 Overview
+The **Personal Finance Visualizer** is a modern web-based application designed to help users efficiently track their expenses. It provides insightful visualizations, transaction management, and downloadable reports to enhance financial awareness.
 
-First, run the development server:
+## 🚀 Features
+✅ **Expense Tracking** - Seamlessly add, update, and delete transactions.  
+✅ **Recent Transactions** - Instantly view a summary of the latest financial activities.  
+✅ **Total Expenses Calculation** - Get real-time updates on total expenditures.  
+✅ **Category-Based Analysis** - Monitor spending patterns through categorized insights.  
+✅ **Data Storage** - Securely store transactions using **MongoDB (or Local Storage as a fallback)**.  
+✅ **Download Reports** - Export financial records as a **PDF report**.  
+✅ **Transaction History** -  View all recorded transactions in one place.
+✅ **Deployed Version Available** - Access the application online anytime.  
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🛠 Tech Stack
+- **Frontend:** Next.js, Tailwind CSS
+- **Backend:** Node.js
+- **Database:** MongoDB (or Local Storage as fallback)
+- **Charts & Visualizations:** Recharts (Bar & Pie Charts)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔥 API Endpoints
+- `GET /api//transactions` - Fetch all transactions
+- `POST /api//transactions` - Add a new transaction
+- `PUT /api//transactions/:id` - Update an existing transaction
+- `DELETE /api//transactions/:id` - Remove a transaction
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## 📂 Installation & Setup
+1. Clone the repository:  
+   ```bash
+   git clone https://github.com/your-username/yardstickTask-mayank.git
+   cd yardstickTask-mayank
+   ```
+2. Install dependencies:  
+   ```bash
+   npm install
+   ```
+3. Start the development server:  
+   ```bash
+   npm run dev
+   ```
+4. Open the app at: [http://localhost:3000](http://localhost:3000)
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## 🌍 Deployment
+The project is deployed online. You can access it here:  
+🔗 **Live Demo:** [Your Deployment Link](https://mayankyardstick.vercel.app)  
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+## 🤝 Contribution
+Contributions are welcome! Feel free to fork this repository and submit a pull request with improvements.
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📜 License
+This project is licensed under the MIT License.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.

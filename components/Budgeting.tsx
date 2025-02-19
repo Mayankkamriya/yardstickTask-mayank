@@ -113,7 +113,7 @@ const Budgeting: React.FC<BudgetingProps> = ({ transactions }) => {
     <BarChart width={700} height={350} data={budgetComparisonData}>
       <XAxis dataKey="category" />
       <YAxis />
-      <Tooltip />
+      <Tooltip  formatter={(value) => `₹${value}`}  />
       <Legend />
       <Bar dataKey="budget" fill="#8884d8" />
       <Bar dataKey="actual" fill="#82ca9d" />
