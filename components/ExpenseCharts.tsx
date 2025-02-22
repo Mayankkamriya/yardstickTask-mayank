@@ -16,7 +16,7 @@ const ExpenseCharts: React.FC<ExpenseChartsProps> = ({ monthlyExpenses, category
         <div className="bg-white shadow-lg rounded-xl p-6 w-full md:w-2/3">
           <h2 className="text-3xl font-semibold text-gray-700 mb-4">📊 Monthly Expenses</h2>
           <ResponsiveContainer width="90%" height={300}>
-            <BarChart data={monthlyExpenses}>
+            <BarChart data={[...monthlyExpenses].sort((a, b) => new Date(a.month).getTime() - new Date(b.month).getTime())} >
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="month" className="text-gray-600" />
               <YAxis />
@@ -44,7 +44,7 @@ const ExpenseCharts: React.FC<ExpenseChartsProps> = ({ monthlyExpenses, category
                   label={({ name, value }) => `${name}: ₹${value}`}
                 >
                   {categoryExpenses.map((entry) => (
-                    <Cell key={entry.category} fill={categoryColors[entry.category] || '#6366F1'} />
+                    <Cell key={entry.category} fill={categoryColors[entry.category] || '#6366F1'} className="focus:outline-none" />
                   ))}
                 </Pie>
                 <Tooltip formatter={(value) => `₹${value}`} />
